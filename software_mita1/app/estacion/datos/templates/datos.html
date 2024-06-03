@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <h1>Lista de usuarios</h1>
+    <a href = "{% url 'datos_nuevo' %}">Nuevo usuario </a>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Clave</th>
+                <th>Procedencia</th>
+                <th>Estacion</th>
+                <th>Opcionbes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in  datos %}
+                <tr>
+                    <td>{{dato.nombre}}</td>
+                    <td>{{dato.clave}}</td>
+                    <td>{{dato.procedencia}}</td>
+                    <td>{{dato.estacion}}</td>
+                    <td>
+                        
+                        <a href="{% url 'editar_datos' dato.id %}">Editar</a>
+                        <a href="{% url 'eliminar_datos' dato.id %}">Eliminar</a>
+                       
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">
+                        <p>No existen usuarios registrados</p>
+                    </td>
+                </tr>
+            {% endfor%}
+
+        </tbody>
+    </table>
+{% endblock contenido %}
